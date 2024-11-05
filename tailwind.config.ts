@@ -18,6 +18,9 @@ const config: Config = {
           600: '#2F6FEB',
         },
       },
+      letterSpacing: {
+        letter18: '1.8rem'
+      },
     },
     keyframes: {
       shimmer: {
@@ -27,6 +30,7 @@ const config: Config = {
       },
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require('@tailwindcss/forms')],
 };
 export default config;
