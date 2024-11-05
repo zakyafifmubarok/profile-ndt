@@ -21,12 +21,41 @@ const config: Config = {
       letterSpacing: {
         letter18: '1.8rem'
       },
-    },
-    keyframes: {
-      shimmer: {
-        '100%': {
-          transform: 'translateX(100%)',
+      animation: {
+        'move-horizontal': 'move-horizontal 3s linear infinite',
+        'move-vertical': 'move-vertical 3s linear infinite',
+        shine: 'shine 8s infinite linear',
+      },
+      keyframes: {
+        shimmer: {
+          '100%': {
+            transform: 'translateX(100%)',
+          },
         },
+        'move-horizontal': {
+          '0%': {
+            transform: 'translateX(-100vw)',
+          },
+          '100%': {
+            transform: 'translateX(100vw)',
+          }
+        },
+        'move-vertical': {
+          '0%': {
+            transform: 'translateY(-100vh)',
+          },
+          '100%': {
+            transform: 'translateY(100vh)',
+          },
+        },
+        shine: {
+          '0%': {
+            'background-position': '100%',
+          },
+          '100%': {
+            'background-position': '-200%',
+          },
+        }
       },
     },
   },

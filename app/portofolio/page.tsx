@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function Portofolio() {
   const [offset, setOffset] = useState(0);
-  const lineContainerRef = useRef(null);
+  const mainRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setOffset(window.scrollY * 0.5);
@@ -15,7 +15,7 @@ export default function Portofolio() {
 
   const createRandomLine = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const container = lineContainerRef.current as any;
+    const container = mainRef.current as any;
     const line = document.createElement('div');
 
     // Set base styles for the line
@@ -30,12 +30,12 @@ export default function Portofolio() {
       line.style.width = '60vw';
       line.style.height = '2px';
       line.style.top = `${Math.random() * 100}vh`;
-      line.style.animation = `moveHorizontal ${Math.random() * 3 + 2}s linear infinite`;
+      line.classList.add(`animate-move-horizontal`);
     } else {
       line.style.width = '2px';
       line.style.height = '60vh';
       line.style.left = `${Math.random() * 100}vw`;
-      line.style.animation = `moveVertical ${Math.random() * 3 + 2}s linear infinite`;
+      line.classList.add(`animate-move-vertical`);
     }
 
     // Append the line and remove it after 6 seconds
@@ -48,6 +48,31 @@ export default function Portofolio() {
   useEffect(() => {
     const intervalId = setInterval(createRandomLine, 800);
     return () => clearInterval(intervalId);
+  }, []);
+
+  const aboutRef = useRef(null);
+  const [isAboutVisible, setAboutVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAboutVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (aboutRef.current) {
+      observer.observe(aboutRef.current);
+    }
+
+    return () => {
+      if (aboutRef.current) {
+        observer.unobserve(aboutRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -66,33 +91,39 @@ export default function Portofolio() {
       </div>
 
       {/* Main section */}
-      <div ref={lineContainerRef} className="relative overflow-hidden bg-gray-950 text-white h-[85vh]">
+      <div ref={mainRef} className="relative overflow-hidden bg-gray-950 text-white h-[90vh]">
         <div
           style={{ transform: `translateY(${offset}px)` }}
           className="z-10 absolute inset-0 bg-cover bg-center transition-transform duration-200 ease-linear"
         >
           <div className="h-full flex flex-col justify-center text-center uppercase">
-            <h1 className="text-5xl lg:text-9xl font-extrabold tracking-widest text-gray-200">
+            <h1 className="shine-text animate-shine text-5xl lg:text-9xl font-extrabold tracking-widest text-gray-200">
               Nahcoda
             </h1>
             <p className="tracking-widest lg:text-2xl lg:tracking-letter18">Digital Teknologi</p>
           </div>
         </div>
       </div>
-
       {/* About section */}
-      <div className="bg-[url('/background/about.webp')] bg-cover relative overflow-hidden h-[60vh]">
-        <div className="max-w-4xl mx-auto py-20 px-6">
-          <h1 className="text-5xl">About the Company</h1>
-          <p className="mt-4 text-justify">
-            CV Nahcoda Digital Teknologi adalah perusahaan teknologi informasi yang
-            berdiri sejak Tahun 2019 yang awalnya bernama PT Juru Ketik Nusantara,
-            kemudian pada Tahun 2022 bertransformasi menjadi CV Nahcoda Digital
-            Teknologi. Kami memiliki pengalaman luas dalam pengembangan aplikasi web,
-            aplikasi mobile, keamanan siber, dan big data. Dengan tim yang terdiri
-            dari para ahli teknologi yang berpengalaman, kami berkomitmen untuk
-            memberikan layanan terbaik kepada anda.
-          </p>
+      <div
+        ref={aboutRef}
+        className={`transform transition-opacity duration-1000 ${
+          isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="bg-[url('/background/about.webp')] bg-cover relative overflow-hidden h-[80vh]">
+          <div className="max-w-4xl mx-auto py-20 px-6">
+            <h1 className="text-5xl">About the Company</h1>
+            <p className="mt-4 text-xl text-justify">
+              CV Nahcoda Digital Teknologi adalah perusahaan teknologi informasi yang
+              berdiri sejak Tahun 2019 yang awalnya bernama PT Juru Ketik Nusantara,
+              kemudian pada Tahun 2022 bertransformasi menjadi CV Nahcoda Digital
+              Teknologi. Kami memiliki pengalaman luas dalam pengembangan aplikasi web,
+              aplikasi mobile, keamanan siber, dan big data. Dengan tim yang terdiri
+              dari para ahli teknologi yang berpengalaman, kami berkomitmen untuk
+              memberikan layanan terbaik kepada anda.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -162,15 +193,16 @@ export default function Portofolio() {
           </div>
         </div>
       </div>
-      {/* Random Lines CSS Animations */}
+      {/* CSS section */}
       <style jsx>{`
-          @keyframes moveHorizontal {
-            0% { transform: translateX(-100vw); }
-            100% { transform: translateX(100vw); }
-          }
-          @keyframes moveVertical {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
+          .shine-text {
+            position: relative;
+            color: white;
+            background: linear-gradient(to left, rgba(245, 245, 245), rgba(211, 211, 211));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-size: 150%;
           }
         `}</style>
     </main>
