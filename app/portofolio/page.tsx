@@ -75,6 +75,39 @@ export default function Portofolio() {
     };
   }, []);
 
+  const vissionRef = useRef(null);
+  const [isVissionVisible, setVissionVisible] = useState(false);
+  const [isMissionVisible, setMissionVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (entry.intersectionRatio >= 0.4) {
+            setVissionVisible(true);
+          }
+          if (entry.intersectionRatio >= 0.7) {
+            setMissionVisible(true);
+          }
+          if (entry.intersectionRatio >= 0.7) {
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: [0.4, 0.7] }
+    );
+
+    if (vissionRef.current) {
+      observer.observe(vissionRef.current);
+    }
+
+    return () => {
+      if (vissionRef.current) {
+        observer.unobserve(vissionRef.current);
+      }
+    };
+  }, []);
+
   return (
     <main>
       {/* Navbar section */}
@@ -111,7 +144,7 @@ export default function Portofolio() {
           isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className="bg-[url('/background/about.webp')] bg-cover relative overflow-hidden h-[80vh]">
+        <div className="bg-[url('/background/about.webp')] bg-cover relative overflow-hidden h-[60vh]">
           <div className="max-w-4xl mx-auto py-20 px-6">
             <h1 className="text-5xl">About the Company</h1>
             <p className="mt-4 text-xl text-justify">
@@ -126,31 +159,34 @@ export default function Portofolio() {
           </div>
         </div>
       </div>
-
       {/* Vision section */}
-      <div className="bg-gray-950 text-white relative overflow-hidden h-[60vh]">
+      <div ref={vissionRef} className="bg-gray-950 text-white relative overflow-hidden h-[60vh]">
         <div className='max-w-4xl mx-auto py-20 px-6'>
-          <div className='grid grid-cols-2 gap-6'>
-            <div>
-              <h1 className='text-5xl'>
-                Visi Kami
-              </h1>
-              <p className='mt-4 text-justify'>
-                Menjadi mitra strategis bagi bisnis dalam transformasi digital dengan
-                memberikan solusi perangkat lunak yang disesuaikan dengan kebutuhan
-                unik setiap klien
-              </p>
-            </div>
-            <div>
-              <h1 className='text-5xl'>
-                Misi Kami
-              </h1>
-              <p className='mt-4 text-justify'>
-                Membantu klien mencapai tujuan bisnis klien melalui teknologi dengan
-                membangun dan mengembangkan aplikasi mobile, web, dan sistem enterprise
-                yang berkualitas tinggi, user-friendly, dan aman.
-              </p>
-            </div>
+          <div className={`transform transition-transform duration-1000 ${
+              isVissionVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'
+            }`}
+          >
+            <h1 className='text-5xl'>
+              Visi Kami
+            </h1>
+            <p className='mt-4 text-justify'>
+              Menjadi mitra strategis bagi bisnis dalam transformasi digital dengan
+              memberikan solusi perangkat lunak yang disesuaikan dengan kebutuhan
+              unik setiap klien
+            </p>
+          </div>
+          <div className={`mt-20 ml-20 transform transition-transform duration-1000 ${
+              isMissionVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-40'
+            }`}
+          >
+            <h1 className='text-5xl'>
+              Misi Kami
+            </h1>
+            <p className='mt-4 text-justify'>
+              Membantu klien mencapai tujuan bisnis klien melalui teknologi dengan
+              membangun dan mengembangkan aplikasi mobile, web, dan sistem enterprise
+              yang berkualitas tinggi, user-friendly, dan aman.
+            </p>
           </div>
         </div>
       </div>
@@ -198,7 +234,7 @@ export default function Portofolio() {
           .shine-text {
             position: relative;
             color: white;
-            background: linear-gradient(to left, rgba(245, 245, 245), rgba(211, 211, 211));
+            background: linear-gradient(to left, rgba(250, 250, 250), rgba(230, 230, 230));
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
