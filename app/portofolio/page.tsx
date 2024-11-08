@@ -2,9 +2,10 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 
-export default function Portofolio() {
+export default function PortofolioPage() {
   const [offset, setOffset] = useState(0);
   const mainRef = useRef(null);
 
@@ -109,10 +110,42 @@ export default function Portofolio() {
     };
   }, []);
 
+
+  const productRef = useRef(null);
+  const [isProductVisible, setProductVisible] = useState(false);
+  const [isProductImageVisible, setProductImageVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (entry.intersectionRatio >= 0.2) {
+            setProductVisible(true);
+          }
+          if (entry.intersectionRatio >= 0.4) {
+            setProductImageVisible(true);
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: [0.2, 0.4] }
+    );
+
+    if (productRef.current) {
+      observer.observe(productRef.current);
+    }
+
+    return () => {
+      if (productRef.current) {
+        observer.unobserve(productRef.current);
+      }
+    };
+  }, []);
+
   return (
     <main>
       {/* Navbar section */}
-      <div className="sticky bg-white opacity-95 top-0 z-50 py-2 px-4">
+      <div className="fixed w-full bg-transparent opacity-95 top-0 z-50 py-2 px-4 text-white">
         <div className="flex justify-between">
           <div>
             <button className="hover:underline">Home</button>
@@ -138,6 +171,7 @@ export default function Portofolio() {
           </div>
         </div>
       </div>
+
       {/* About section */}
       <div
         ref={aboutRef}
@@ -145,9 +179,10 @@ export default function Portofolio() {
           isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className="bg-[url('/background/about.webp')] bg-cover relative overflow-hidden h-[60vh]">
-          <div className="max-w-4xl mx-auto py-20 px-6">
-            <h1 className="text-5xl">About the Company</h1>
+        {/* bg-[url('/background/about.webp')] */}
+        <div className="bg-gradient-to-b to-white from-slate-200 relative overflow-hidden min-h-[40vh]">
+          <div className="max-w-7xl mx-auto py-20 lg:py-40 px-6">
+            <h1 className="text-4xl font-medium uppercase">About the Company</h1>
             <p className="mt-4 text-xl text-justify">
               CV Nahcoda Digital Teknologi adalah perusahaan teknologi informasi yang
               berdiri sejak Tahun 2019 yang awalnya bernama PT Juru Ketik Nusantara,
@@ -160,14 +195,82 @@ export default function Portofolio() {
           </div>
         </div>
       </div>
+
+      {/* Product section */}
+      <div
+        ref={productRef}
+        className={`transform transition-opacity duration-1000 ${
+          isProductVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <div className="bg-gradient-to-b to-slate-200 from-white relative overflow-hidden min-h-[40vh]">
+          <div className='max-w-7xl mx-auto py-20 lg:py-40 px-6'>
+            <h1 className='text-left text-4xl font-medium uppercase'>Our Product</h1>
+            <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className={`transform transition-opacity duration-1000 ${
+                  isProductImageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+              >
+                <Image
+                  src="/products/siplah.tokoladang.co.id.png"
+                  width={1000}
+                  height={760}
+                  alt="Screenshots of the siplah.tokoladang.co.id"
+                />
+              </div>
+              <div className={`transform transition-opacity duration-1000 delay-500 ${
+                  isProductImageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+              >
+                <Image
+                  src="/products/tokoladang.co.id.png"
+                  width={1000}
+                  height={760}
+                  alt="Screenshots of the tokoladang.co.id"
+                />
+              </div>
+              <div>
+                <div className='font-bold text-xl uppercase'>
+                  Aplikasi Gain Profit
+                </div>
+                <p>(Duta Swalayan, Alyasini Mart)</p>
+              </div>
+              <div>
+                <div className='font-bold text-xl uppercase'>
+                  Aplikasi BAYUR (Belanja Buah dan Sayur)
+                </div>
+                <p>(Bayur Melijo Online)</p>
+              </div>
+              <div>
+                <div className='font-bold text-xl uppercase'>
+                  Marketplace TOKO LADANG
+                </div>
+                <p>(PT. Ladang Karya Husada)</p>
+              </div>
+              <div>
+                <div className='font-bold text-xl uppercase'>
+                  Toko Daring TOKO LADANG
+                </div>
+                <p>(PT. Ladang Karya Husada)</p>
+              </div>
+              <div>
+                <div className='font-bold text-xl uppercase'>
+                  Sistem Administrasi Keuangan
+                </div>
+                <p>(Universitas Yudharta Pasuruan)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Vision section */}
-      <div ref={vissionRef} className="bg-gray-950 text-white relative overflow-hidden h-[60vh]">
-        <div className='max-w-4xl mx-auto py-20 px-6'>
+      <div ref={vissionRef} className="bg-gray-950 text-white relative overflow-hidden min-h-[60vh]">
+        <div className='max-w-4xl mx-auto py-40 px-6'>
           <div className={`transform transition-transform duration-1000 ${
               isVissionVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'
             }`}
           >
-            <h1 className='text-5xl'>
+            <h1 className='text-4xl'>
               Visi Kami
             </h1>
             <p className='mt-4 text-justify'>
@@ -188,45 +291,6 @@ export default function Portofolio() {
               membangun dan mengembangkan aplikasi mobile, web, dan sistem enterprise
               yang berkualitas tinggi, user-friendly, dan aman.
             </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Product section */}
-      <div className="relative overflow-hidden h-[60vh]">
-        <div className='max-w-4xl mx-auto py-20 px-6'>
-          <h1 className='text-center text-5xl'>Our Product</h1>
-          <div className="mt-8 grid grid-cols-2 gap-6">
-            <div>
-              <div className='font-bold text-xl uppercase'>
-                Aplikasi Gain Profit
-              </div>
-              <p>(Duta Swalayan, Alyasini Mart)</p>
-            </div>
-            <div>
-              <div className='font-bold text-xl uppercase'>
-                Aplikasi BAYUR (Belanja Buah dan Sayur)
-              </div>
-              <p>(Bayur Melijo Online)</p>
-            </div>
-            <div>
-              <div className='font-bold text-xl uppercase'>
-                Marketplace TOKO LADANG
-              </div>
-              <p>(PT. Ladang Karya Husada)</p>
-            </div>
-            <div>
-              <div className='font-bold text-xl uppercase'>
-                Toko Daring TOKO LADANG
-              </div>
-              <p>(PT. Ladang Karya Husada)</p>
-            </div>
-            <div>
-              <div className='font-bold text-xl uppercase'>
-                Sistem Administrasi Keuangan
-              </div>
-              <p>(Universitas Yudharta Pasuruan)</p>
-            </div>
           </div>
         </div>
       </div>
