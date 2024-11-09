@@ -4,8 +4,27 @@
 
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
+import { lusitana } from '@/app/ui/fonts'
 
 export default function PortofolioPage() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const [offset, setOffset] = useState(0);
   const mainRef = useRef(null);
 
@@ -22,7 +41,7 @@ export default function PortofolioPage() {
 
     // Set base styles for the line
     line.style.position = 'absolute';
-    line.style.backgroundColor = '#00ffff'; // Cyan for contrast
+    line.style.backgroundColor = '#ffffff';
     line.style.opacity = '0.2';
     line.style.zIndex = '1';
     
@@ -145,12 +164,14 @@ export default function PortofolioPage() {
   return (
     <main>
       {/* Navbar section */}
-      <div className="fixed w-full bg-transparent opacity-95 top-0 z-50 py-2 px-4 text-white">
+      <div className={`fixed w-full opacity-60 top-0 z-50 py-2 px-4 text-white ${
+        isScrolled ? 'bg-gray-950' : 'bg-transparent'
+      }`}>
         <div className="flex justify-between">
           <div>
             <button className="hover:underline">Home</button>
           </div>
-          <div className='flex gap-4'>
+          <div className={`flex gap-4 ${ isScrolled ? 'text-white' : 'text-black'}`}>
             <button className="hover:underline">Contact</button>
             <button className="hover:underline">About</button>
           </div>
@@ -158,13 +179,16 @@ export default function PortofolioPage() {
       </div>
 
       {/* Main section */}
-      <div ref={mainRef} className="relative overflow-hidden bg-gray-950 text-white h-[90vh]">
+      <div
+        ref={mainRef}
+        className="bg-[url('/background/1.png')] bg-cover relative overflow-hidden h-[90vh]"
+      >
         <div
           style={{ transform: `translateY(${offset}px)` }}
           className="z-10 absolute inset-0 bg-cover bg-center transition-transform duration-200 ease-linear"
         >
-          <div className="h-full flex flex-col justify-center text-center uppercase">
-            <h1 className="shine-text animate-shine text-5xl lg:text-9xl font-extrabold tracking-widest text-gray-200">
+          <div className={`${lusitana.className} h-full flex flex-col justify-center text-center uppercase text-shadow`}>
+            <h1 className="text-5xl lg:text-9xl font-extrabold tracking-widest">
               Nahcoda
             </h1>
             <p className="tracking-widest lg:text-2xl lg:tracking-letter18">Digital Teknologi</p>
@@ -180,9 +204,9 @@ export default function PortofolioPage() {
         }`}
       >
         {/* bg-[url('/background/about.webp')] */}
-        <div className="bg-gradient-to-b to-white from-slate-200 relative overflow-hidden min-h-[40vh]">
+        <div className="bg-gradient-to-b to-white from-slate-300 relative overflow-hidden min-h-[40vh]">
           <div className="max-w-7xl mx-auto py-20 lg:py-40 px-6">
-            <h1 className="text-4xl font-medium uppercase">About the Company</h1>
+            <h1 className="text-4xl font-medium uppercase text-shad">About the Company</h1>
             <p className="mt-4 text-xl text-justify">
               CV Nahcoda Digital Teknologi adalah perusahaan teknologi informasi yang
               berdiri sejak Tahun 2019 yang awalnya bernama PT Juru Ketik Nusantara,
@@ -203,7 +227,7 @@ export default function PortofolioPage() {
           isProductVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className="bg-gradient-to-b to-slate-200 from-white relative overflow-hidden min-h-[40vh]">
+        <div className="bg-gradient-to-b to-slate-300 from-white relative overflow-hidden min-h-[40vh]">
           <div className='max-w-7xl mx-auto py-20 lg:py-40 px-6'>
             <h1 className='text-left text-4xl font-medium uppercase'>Our Product</h1>
             <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
