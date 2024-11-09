@@ -22,15 +22,21 @@ const config: Config = {
         letter18: '1.8rem'
       },
       animation: {
+        'fade-in': 'fade-in 0.5s ease-in',
         'move-horizontal': 'move-horizontal 3s linear infinite',
         'move-vertical': 'move-vertical 3s linear infinite',
         shine: 'shine 8s infinite linear',
+        'gradient-x': 'gradient-x 3s infinite linear',
       },
       keyframes: {
         shimmer: {
           '100%': {
             transform: 'translateX(100%)',
           },
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
         },
         'move-horizontal': {
           '0%': {
@@ -55,7 +61,18 @@ const config: Config = {
           '100%': {
             'background-position': '-200%',
           },
-        }
+        },
+        'gradient-x': {
+          '0%': {
+            'background-position': '0% 50%',
+          },
+          '50%': {
+            'background-position': '100% 50%',
+          },
+          '100%': {
+            'background-position': '0% 50%',
+          },
+        },
       },
     },
   },
