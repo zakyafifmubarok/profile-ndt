@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from 'react';
 import { lusitana, poppins } from '@/app/ui/fonts'
 
 export default function PortofolioPage() {
-  const [, setScrollY] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const [offset, setOffset] = useState(0);
@@ -157,16 +157,16 @@ export default function PortofolioPage() {
   return (
     <main className='relative'>
       {/* Navbar section */}
-      <div className={`fixed w-full opacity-60 top-0 z-50 py-2 px-4 text-white ${
+      <div className={`fixed w-full opacity-80 top-0 z-50 py-2 px-4 text-white ${
         isScrolled ? 'bg-gray-950' : 'bg-transparent'
       }`}>
-        <div className="flex justify-between">
+        <div className='flex justify-between'>
           <div>
-            <button className="hover:underline">Home</button>
+            <button className='hover:underline'>Home</button>
           </div>
-          <div className={`flex gap-4 ${ isScrolled ? 'text-white' : 'text-black'}`}>
-            <button className="hover:underline">Contact</button>
-            <button className="hover:underline">About</button>
+          <div className='flex gap-4'>
+            <button className='hover:underline'>Contact</button>
+            <button className='hover:underline'>About</button>
           </div>
         </div>
       </div>
@@ -174,8 +174,18 @@ export default function PortofolioPage() {
       {/* Main section */}
       <div
         ref={mainRef}
-        className="bg-[url('/background/1.png')] bg-cover z-10 relative overflow-hidden h-[90vh] animate-fade-in"
+        className="z-10 relative overflow-hidden h-[90vh] animate-fade-in"
       >
+        <div className='absolute size-full bg- inset-0 bg-gray-950 opacity-90'
+          style={{ transform: `translateY(${offset}px)` }}
+        >
+          <Image
+            src="/background/bg-1.png"
+            alt="Screenshots of the siplah.tokoladang.co.id"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
         <div
           className="z-10 absolute inset-0 bg-cover bg-center transition-transform duration-200 ease-linear"
           style={{ transform: `translateY(${offset}px)` }}
@@ -192,11 +202,10 @@ export default function PortofolioPage() {
       {/* About section */}
       <div
         ref={aboutRef}
-        className={`transform transition-opacity duration-1000 ${
+        className={`z-20 transform transition-opacity duration-1000 ${
           isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        {/* bg-[url('/background/about.webp')] */}
         <div className="bg-gradient-to-b to-white from-slate-300 relative overflow-hidden min-h-[40vh]">
           <div className="max-w-7xl mx-auto py-20 lg:py-28 px-6">
             <div className="flex gap-20">
@@ -226,11 +235,19 @@ export default function PortofolioPage() {
       {/* Vision section */}
       <div
         ref={vissionRef}
-        className="relative overflow-hidden h-full max-h-[80vh] text-white"
+        className="relative overflow-hidden h-full max-h-[100vh] bg-gray-950 text-white"
       >
-        <div
-          className="absolute inset-0 bg-[url('/background/spotlight.webp')] bg-cover bg-center h-full opacity-80"
-        />
+        <div className='absolute top-[150px] size-full inset-0'
+          style={{ transform: `translateY(${scrollY * -0.2}px)` }}>
+            <Image
+              src="/background/spotlight.webp"
+              alt="Screenshots of the siplah.tokoladang.co.id"
+              height={2000}
+              width={2000}
+            />
+        </div>
+        {/* <div className='max-w-7xl mx-auto w-full h-full bg-red-300'>
+        </div> */}
         <div className={`${poppins.className} max-w-4xl mx-auto py-40 px-6`}>
           <div
             className={`transform transition-transform duration-1000 ${
