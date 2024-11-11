@@ -237,14 +237,15 @@ export default function PortofolioPage() {
         ref={vissionRef}
         className="relative overflow-hidden h-full max-h-[100vh] bg-gray-950 text-white"
       >
-        <div className='absolute top-[150px] size-full inset-0'
-          style={{ transform: `translateY(${scrollY * -0.2}px)` }}>
-            <Image
-              src="/background/spotlight.webp"
-              alt="Screenshots of the siplah.tokoladang.co.id"
-              height={2000}
-              width={2000}
-            />
+        <div className='absolute top-[300px] size-full inset-0 opacity-50'
+          style={{ transform: `translateY(${scrollY * -0.2}px)` }}
+        >
+          <Image
+            src="/background/spotlight.webp"
+            alt="Screenshots of the siplah.tokoladang.co.id"
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
         {/* <div className='max-w-7xl mx-auto w-full h-full bg-red-300'>
         </div> */}
