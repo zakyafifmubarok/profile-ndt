@@ -66,10 +66,10 @@ const ServicesComponent = forwardRef<HTMLElement, ServicesComponentProps>((props
             isServicesVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-40'
           }`}
         >
-          <h1 className='text-5xl'>
+          <h1 className='text-3xl md:text-5xl'>
             Our Offered Services
           </h1>
-          <p className='mt-4 text-justify'>
+          <p className='mt-2 text-justify md:mt-4'>
             Kami menawarkan solusi yang fleksibel yang dapat disesuaikan dengan perubahan bisnis Anda
           </p>
         </div>

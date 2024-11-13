@@ -28,6 +28,7 @@ const AboutComponent = forwardRef<HTMLElement, AboutComponentProps>((props, ref)
 
     return () => {
       if (aboutRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(aboutRef.current);
       }
     };
@@ -44,8 +45,8 @@ const AboutComponent = forwardRef<HTMLElement, AboutComponentProps>((props, ref)
         <div className='max-w-7xl mx-auto py-20 lg:py-28 px-6'>
           <div className='flex gap-20'>
             <div className={`${poppins.className}`}>
-              <h1 className='text-4xl font-bold uppercase'>About the Company</h1>
-              <p className='mt-4 text-xl text-justify'>
+              <h1 className='text-3xl font-bold uppercase md:text-4xl'>About the Company</h1>
+              <p className='mt-4 text-justify md:text-xl'>
                 CV Nahcoda Digital Teknologi adalah perusahaan teknologi informasi yang
                 berdiri sejak Tahun 2019 yang awalnya bernama PT Juru Ketik Nusantara,
                 kemudian pada Tahun 2022 bertransformasi menjadi CV Nahcoda Digital
