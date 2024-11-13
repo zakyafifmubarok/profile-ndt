@@ -211,7 +211,7 @@ export default function PortofolioPage() {
           isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className='bg-gradient-to-b to-white from-slate-300 relative overflow-hidden min-h-[40vh]'>
+        <div className='bg-gradient-to-b to-white from-slate-300 relative overflow-hidden min-h-[80vh]'>
           <div className='max-w-7xl mx-auto py-20 lg:py-28 px-6'>
             <div className='flex gap-20'>
               <div className={`${poppins.className}`}>
@@ -226,7 +226,7 @@ export default function PortofolioPage() {
                   memberikan layanan terbaik kepada anda.
                 </p>
               </div>
-              <div className='hidden lg:block'>
+              <div className='hidden lg:block shrink-0'>
                 <Image
                   src='/background/picture1.png'
                   width={500}
@@ -243,9 +243,9 @@ export default function PortofolioPage() {
       {/* Vision section */}
       <section
         ref={vissionRef}
-        className='relative overflow-hidden h-full max-h-[100vh] bg-slate-950 text-white'
+        className='relative overflow-hidden min-h-[80vh] bg-slate-950 text-white'
       >
-        <div className='absolute top-[150px] h-screen inset-0 opacity-50'
+        <div className='absolute top-[200px] h-screen inset-0 opacity-50'
           style={{ transform: `translateY(${scrollY * -0.2}px)` }}
         >
           <Image
@@ -288,7 +288,7 @@ export default function PortofolioPage() {
           isProductVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className='bg-gradient-to-b to-slate-300 from-white relative overflow-hidden min-h-[40vh]'>
+        <div className='bg-gradient-to-b to-slate-300 from-white relative overflow-hidden min-h-[80vh]'>
           <div className='max-w-7xl mx-auto py-20 lg:py-28 px-6'>
             <h1 className='text-left text-4xl font-medium uppercase'>Our Product</h1>
             <div className='mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6'>
@@ -348,7 +348,7 @@ export default function PortofolioPage() {
           </div>
         </div>
       </section>
-      <section className='bg-gradient-to-b from-slate-50 via-white to-slate-50'>
+      <section className='min-h-[80vh] bg-gradient-to-b from-slate-100 via-white to-slate-100'>
         <div className='py-8 lg:py-16 px-4 mx-auto max-w-screen-md'>
           <h2 className='mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900'>Contact Us</h2>
           <p className='mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl'>Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
