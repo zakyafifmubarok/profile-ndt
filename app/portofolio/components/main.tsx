@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import { lusitana } from '@/app/ui/fonts'
 
-type MainComponentProps = object
+type MainComponentProps = {
+  scrollY: number
+}
 
 const MainComponent = forwardRef<HTMLElement, MainComponentProps>((props, ref) => {
   const mainRef = useRef<HTMLElement | null>(null);

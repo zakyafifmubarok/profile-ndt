@@ -10,7 +10,8 @@ import ProductsComponent from './components/products'
 import ContactComponent from './components/contact'
 
 export default function PortofolioPage() {
-  const [, setScrollY] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [scrollY, setScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const mainRef = useRef<HTMLElement | null>(null);
@@ -76,13 +77,13 @@ export default function PortofolioPage() {
       </div>
 
       {/* Main section */}
-      <MainComponent ref={mainRef} />
+      <MainComponent ref={mainRef} scrollY={scrollY} />
 
       {/* About section */}
       <AboutComponent ref={aboutRef} />
 
       {/* Services section */}
-      <ServicesComponent ref={servicesRef} />
+      <ServicesComponent ref={servicesRef} scrollY={scrollY}  />
 
       {/* Product section */}
       <ProductsComponent ref={productRef} />

@@ -4,7 +4,9 @@ import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 're
 import Image from 'next/image';
 import { poppins } from '@/app/ui/fonts'
 
-type ServicesComponentProps = object
+type ServicesComponentProps = {
+  scrollY: number
+}
 
 const ServicesComponent = forwardRef<HTMLElement, ServicesComponentProps>((props, ref) => {
   const servicesRef = useRef<HTMLElement | null>(null);
@@ -49,7 +51,7 @@ const ServicesComponent = forwardRef<HTMLElement, ServicesComponentProps>((props
       className='relative overflow-hidden min-h-[80vh] bg-slate-950 text-white'
     >
       <div className='absolute top-[200px] h-screen inset-0 opacity-50'
-        style={{ transform: `translateY(${scrollY * -0.2}px)` }}
+        style={{ transform: `translateY(${props.scrollY * -0.2}px)` }}
       >
         <Image
           src='/background/spotlight.webp'
