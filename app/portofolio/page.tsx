@@ -10,6 +10,7 @@ import ProductsComponent from './components/products'
 import ContactComponent from './components/contact'
 import IconBars from '@/app/ui/icons/IconBars'
 import IconClose from '@/app/ui/icons/IconClose'
+import Image from 'next/image';
 
 export default function PortofolioPage() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -51,10 +52,18 @@ export default function PortofolioPage() {
         <div className='flex justify-between'>
           <div>
             <button
-              className='hidden md:block hover:underline'
+              className='flex items-center hover:underline'
               onClick={() => scrollToSection(mainRef)}
-              >Home</button
             >
+              <Image
+                src='/logo-white.png'
+                width={60}
+                height={60}
+                alt='Picture of CEO'
+                className='-mt-2 -ml-4 md:mt-0 md:ml-0'
+              />
+              <span className='hidden md:block'>Home</span>
+            </button>
           </div>
           <div className='block md:hidden'>
             <button onClick={() => setMobileNavigation(!isMobileNavigation)}>

@@ -74,7 +74,7 @@ const MainComponent = forwardRef<HTMLElement, MainComponentProps>((props, ref) =
           <h1 className='text-5xl lg:text-9xl font-extrabold tracking-widest'>
             Nahcoda
           </h1>
-          <p className='tracking-widest lg:text-2xl lg:tracking-letter18'>Digital Teknologi</p>
+          <p className='tracking-small lg:text-2xl lg:tracking-letter18'>Digital Teknologi</p>
         </div>
       </div>
     </section>

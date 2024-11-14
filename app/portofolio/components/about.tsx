@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import Image from 'next/image';
-import { poppins } from '@/app/ui/fonts'
+import { poppins } from '@/app/ui/fonts';
+import IconLogo from '@/public/logo.svg'
 
 type AboutComponentProps = object
 
@@ -37,14 +38,14 @@ const AboutComponent = forwardRef<HTMLElement, AboutComponentProps>((props, ref)
   return (
     <section
       ref={aboutRef}
-      className={`z-20 transform transition-opacity duration-1000 ${
+      className={`transform transition-opacity duration-1000 ${
         isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
     >
-      <div className='bg-gradient-to-b to-white from-slate-300 relative overflow-hidden min-h-[80vh]'>
-        <div className='max-w-7xl mx-auto py-20 lg:py-28 px-6'>
-          <div className='flex gap-20'>
-            <div className={`${poppins.className}`}>
+      <div className='bg-gradient-to-b to-white from-slate-300 relative px-2 overflow-hidden'>
+        <div className='flex justify-center items-center max-w-5xl min-h-[80vh] mx-auto'>
+          <div className='flex items-center gap-20'>
+            <div className={`w-full ${poppins.className}`}>
               <h1 className='text-3xl font-bold uppercase md:text-4xl'>About the Company</h1>
               <p className='mt-4 text-justify md:text-xl'>
                 CV Nahcoda Digital Teknologi adalah perusahaan teknologi informasi yang
@@ -56,13 +57,15 @@ const AboutComponent = forwardRef<HTMLElement, AboutComponentProps>((props, ref)
                 memberikan layanan terbaik kepada anda.
               </p>
             </div>
-            <div className='hidden lg:block shrink-0'>
+            <div
+              className='w-1/2 justify-end hidden animate-pulse lg:block'
+              style={{ transitionDuration: '10000ms' }}
+            >
               <Image
-                src='/background/picture1.png'
-                width={500}
+                src={IconLogo}
+                width={300}
                 height={380}
                 alt='Picture of CEO'
-                style={{ width: 'auto', height: 'auto' }}
               />
             </div>
           </div>
