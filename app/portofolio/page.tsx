@@ -50,20 +50,18 @@ export default function PortofolioPage() {
         isScrolled ? 'bg-slate-950' : 'bg-transparent'
       }`}>
         <div className='flex justify-between'>
-          <div>
-            <button
-              className='flex items-center hover:underline'
-              onClick={() => scrollToSection(mainRef)}
-            >
-              <Image
-                src='/logo-white.png'
-                width={60}
-                height={60}
-                alt='Picture of CEO'
-                className='-mt-2 -ml-4 md:mt-0 md:ml-0'
-              />
-              <span className='hidden md:block'>Home</span>
-            </button>
+          <div
+            className='flex items-center cursor-pointer hover:underline'
+            onClick={() => scrollToSection(mainRef)}
+          >
+            <Image
+              src='/logo-white.png'
+              width={60}
+              height={60}
+              alt='Picture of CEO'
+              className='-mt-2 -ml-4 md:mt-0 md:ml-0'
+            />
+            <span className='hidden md:block'>Home</span>
           </div>
           <div className='block md:hidden'>
             <button onClick={() => setMobileNavigation(!isMobileNavigation)}>

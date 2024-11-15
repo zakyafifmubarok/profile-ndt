@@ -73,7 +73,7 @@ const ServicesComponent = forwardRef<HTMLElement, ServicesComponentProps>((props
             Kami menawarkan solusi yang fleksibel yang dapat disesuaikan dengan perubahan bisnis Anda
           </p>
         </div>
-        <div className={`mt-8 space-y-4 text-lg transform transition-transform duration-1000 ${
+        <ol className={`mt-8 space-y-4 text-lg transform transition-transform duration-1000 ${
             isServiceDetailsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-40'
           }`}
         >
@@ -82,7 +82,7 @@ const ServicesComponent = forwardRef<HTMLElement, ServicesComponentProps>((props
           <li>Platform Digital</li>
           <li>Kemanan Siber</li>
           <li>Konsultasi IT, dll.</li>
-        </div>
+        </ol>
       </div>
     </section>
   );
