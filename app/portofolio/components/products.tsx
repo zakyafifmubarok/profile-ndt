@@ -23,7 +23,6 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
         jasa untuk satuan pendidikan. SIPLah Toko Ladang merupakan bagian dari Sistem Informasi
         Pengadaan Sekolah (SIPLah) yang merupakan sistem elektronik untuk pengadaan barang dan
         jasa oleh satuan pendidikan.`,
-      class: 'text-white',
     },
     {
       title: 'Toko Daring TOKOLADANG',
@@ -33,7 +32,6 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
         Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah (LKPP) untuk memfasilitasi pelaksanaan
         e-purchasing Pengadaan Barang/Jasa di K/L/PD melalui PPMSE yang berbentuk marketplace dan
         ritel daring.`,
-      class: 'text-slate-900',
     },
     {
       title: 'Aplikasi BAYUR',
@@ -43,7 +41,6 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
         untuk membeli berbagai macam sayur dan bahan makanan segar secara praktis dan efisien. Melalui
         aplikasi ini, pengguna dapat menjelajahi katalog produk sayur, memilih item yang diinginkan,
         menambahkannya ke keranjang belanja, dan melakukan pembayaran secara online.`,
-      class: 'text-slate-900',
     },
     {
       title: 'Aplikasi Gain Profit',
@@ -51,7 +48,6 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
       image: '/products/gain-profit.png',
       description: `Aplikasi Gain Profit adalah platform digital yang dirancang untuk membantu pengguna
         mengelola dan memaksimalkan keuntungan finansial mereka.`,
-      class: 'text-slate-900',
     },
     {
       title: 'Sistem Administrasi Keuangan',
@@ -60,7 +56,6 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
       description: `Aplikasi Sistem Administrasi Keuangan adalah perangkat lunak yang dirancang untuk
           membantu pengelolaan keuangan secara efektif dan efisien dalam suatu organisasi,
           perusahaan, atau instansi.`,
-      class: 'text-slate-900',
     },
   ]
   const slideCount = slides.length;
@@ -111,14 +106,15 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
         }}
       >
       </div>
-      <div className='relative flex max-w-5xl mx-auto overflow-hidden min-h-[70vh]'>
+      <div className={`absolute bg-cover bg-center inset-0 bg-slate-900 opacity-50`}></div>
+      <div className='relative flex max-w-5xl mx-auto overflow-hidden min-h-[80vh]'>
         <div className='max-w-3xl m-auto py-20 lg:py-28 px-6'>
           <div className="mt-6 w-full overflow-hidden my-auto">
             <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentSlider * 100}%)` }}>
               {slides.map((slide, index) => (
                 <div
                   key={index}
-                  className={`${slide.class} w-full shrink-0 py-8 justify-center items-center gap-6 rounded`}
+                  className={`text-white w-full shrink-0 py-8 justify-center items-center gap-6 rounded`}
                 >
                   <div className={`${nunito.className} font-bold text-4xl uppercase text-shadow-md`}>
                     {slide.title}

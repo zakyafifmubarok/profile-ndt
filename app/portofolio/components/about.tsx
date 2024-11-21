@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
 import Image from 'next/image';
 import { poppins } from '@/app/ui/fonts';
-import IconLogo from '@/public/logo.svg'
 
 type AboutComponentProps = object
 
@@ -42,8 +41,8 @@ const AboutComponent = forwardRef<HTMLElement, AboutComponentProps>((props, ref)
         isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
     >
-      <div className='bg-gradient-to-b to-white from-slate-300 relative px-2 overflow-hidden'>
-        <div className='flex justify-center items-center max-w-5xl min-h-[80vh] mx-auto'>
+      <div className='bg-slate-900 relative px-2 text-white overflow-hidden'>
+        <div className='flex justify-center items-center max-w-5xl min-h-[60vh] mx-auto'>
           <div className='flex items-center gap-20'>
             <div className={`w-full ${poppins.className}`}>
               <h1 className='text-3xl font-bold uppercase md:text-4xl'>About the Company</h1>
@@ -62,7 +61,7 @@ const AboutComponent = forwardRef<HTMLElement, AboutComponentProps>((props, ref)
               style={{ transitionDuration: '10000ms' }}
             >
               <Image
-                src={IconLogo}
+                src="/logo-white.png"
                 width={300}
                 height={380}
                 alt='Picture of CEO'

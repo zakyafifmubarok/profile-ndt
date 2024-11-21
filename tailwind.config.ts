@@ -27,8 +27,9 @@ const config: Config = {
         'fade-in': 'fade-in 0.5s ease-in',
         'move-horizontal': 'move-horizontal 3s linear infinite',
         'move-vertical': 'move-vertical 3s linear infinite',
-        shine: 'shine 8s infinite linear',
+        'shine': 'shine 8s infinite linear',
         'gradient-x': 'gradient-x 3s infinite linear',
+        'move-up': 'move-up 10s infinite linear',
       },
       keyframes: {
         shimmer: {
@@ -50,13 +51,13 @@ const config: Config = {
         },
         'move-vertical': {
           '0%': {
-            transform: 'translateY(-100vh)',
-          },
-          '100%': {
             transform: 'translateY(100vh)',
           },
+          '100%': {
+            transform: 'translateY(-100vh)',
+          },
         },
-        shine: {
+        'shine': {
           '0%': {
             'background-position': '100%',
           },
@@ -74,6 +75,19 @@ const config: Config = {
           '100%': {
             'background-position': '0% 50%',
           },
+        },
+        'move-up': {
+          '0%': {
+            'transform': 'translateY(100vh)',
+            'opacity': '0',
+          },
+          '50%': {
+            'opacity': '1',
+          },
+          '100%': {
+            'transform': 'translateY(-100vh)',
+            'opacity': '0',
+          }
         },
       },
     },

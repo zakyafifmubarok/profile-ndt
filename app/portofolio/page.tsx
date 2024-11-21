@@ -47,7 +47,7 @@ export default function PortofolioPage() {
     <main className='relative'>
       {/* Navbar section */}
       <div className={`fixed w-full opacity-80 top-0 z-50 py-2 px-4 text-white ${
-        isScrolled ? 'bg-slate-950' : 'bg-transparent'
+        isScrolled ? 'bg-slate-900' : 'bg-transparent'
       }`}>
         <div className='flex justify-between'>
           <div

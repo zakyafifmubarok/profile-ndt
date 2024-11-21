@@ -1,86 +1,82 @@
 'use client';
 
-import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
-import { lusitana } from '@/app/ui/fonts'
+import {
+  useState,
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
+import { lusitana } from '@/app/ui/fonts';
 
 type MainComponentProps = {
-  scrollY: number
-}
+  scrollY: number;
+};
 
 const MainComponent = forwardRef<HTMLElement, MainComponentProps>((props, ref) => {
   const mainRef = useRef<HTMLElement | null>(null);
   useImperativeHandle(ref, () => mainRef.current as HTMLElement);
-  
+
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setOffset(window.scrollY * 0.5)
+      setOffset(window.scrollY * 0.5); // Adjust parallax effect strength
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const createRandomLine = () => {
-    const container = mainRef.current;
-    const line = document.createElement('div');
+  const generateRandomDots = (count: number, delay: string = '0s') => {
+    return Array.from({ length: count }).map((_, index) => {
+      const top = Math.random() * 100; // Position top in %
+      const left = Math.random() * 100; // Position left in %
 
-    // Set base styles for the line
-    line.style.position = 'absolute';
-    line.style.backgroundColor = '#ffffff';
-    line.style.opacity = '0.2';
-    line.style.zIndex = '1';
-    
-    // Set orientation and animation
-    const isHorizontal = Math.random() > 0.5;
-    if (isHorizontal) {
-      line.style.width = '60vw';
-      line.style.height = '2px';
-      line.style.top = `${Math.random() * 100}vh`;
-      line.classList.add(`animate-move-horizontal`);
-    } else {
-      line.style.width = '2px';
-      line.style.height = '60vh';
-      line.style.left = `${Math.random() * 100}vw`;
-      line.classList.add(`animate-move-vertical`);
-    }
-
-    // Append the line and remove it after 6 seconds
-    if (container) {
-      container.appendChild(line);
-      setTimeout(() => container.removeChild(line), 6000);
-    }
+      return (
+        <div
+          key={index}
+          className="bg-white h-px w-px rounded-full absolute animate-move-up"
+          style={{
+            top: `${top}%`,
+            left: `${left}%`,
+            animationDelay: delay,
+          }}
+        ></div>
+      );
+    });
   };
-
-  useEffect(() => {
-    const intervalId = setInterval(createRandomLine, 800);
-    return () => clearInterval(intervalId);
-  }, []);
 
   return (
     <section
       ref={mainRef}
-      className='z-10 relative overflow-hidden h-[90vh] animate-fade-in'
+      className="bg-slate-900 relative overflow-hidden h-[90vh] animate-fade-in"
     >
+      {/* Random Dots */}
+      <div className="absolute inset-0 h-full">
+        <div>{generateRandomDots(100)}</div>
+        <div>{generateRandomDots(100, '3s')}</div>
+        <div>{generateRandomDots(100, '6s')}</div>
+      </div>
+
+      {/* Parallax Background */}
       <div
-        className='absolute size-full bg-gradient-to-b from-slate-900 via-white to-slate-900'
-        style={{ transform: `translateY(${offset}px)` }}
-      />
-      <div
-        className='z-10 absolute inset-0 bg-cover bg-center transition-transform duration-200 ease-linear'
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-200 ease-linear"
         style={{ transform: `translateY(${offset}px)` }}
       >
-        <div className={`${lusitana.className} h-full flex flex-col justify-center text-center uppercase text-shadow`}>
-          <h1 className='text-5xl lg:text-9xl font-extrabold tracking-widest'>
+        <div
+          className={`${lusitana.className} text-white h-full flex flex-col justify-center text-center uppercase text-shadow`}
+        >
+          <h1 className="text-5xl lg:text-9xl font-extrabold tracking-widest">
             Nahcoda
           </h1>
-          <p className='tracking-small lg:text-2xl lg:tracking-letter18'>Digital Teknologi</p>
+          <p className="tracking-small lg:text-2xl lg:tracking-letter18">
+            Digital Teknologi
+          </p>
         </div>
       </div>
     </section>
   );
-})
-
+});
 
 MainComponent.displayName = 'MainComponent';
-export default MainComponent
+export default MainComponent;

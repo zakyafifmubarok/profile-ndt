@@ -12,7 +12,7 @@ export default function RootLayout({
         <title>CV Nahcoda Digital Teknologi</title>
         <meta name="description" content="Portofolio CV.NAHCODA DIGITAL TEKNOLOGI" />
       </head>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased bg-slate-900`}>{children}</body>
     </html>
   );
 }

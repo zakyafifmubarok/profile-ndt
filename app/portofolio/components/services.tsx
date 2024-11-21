@@ -48,7 +48,7 @@ const ServicesComponent = forwardRef<HTMLElement, ServicesComponentProps>((props
   return (
     <section
       ref={servicesRef}
-      className='relative overflow-hidden min-h-[80vh] bg-slate-950 text-white'
+      className='relative overflow-hidden min-h-[80vh] bg-slate-900 text-white'
     >
       <div className='absolute top-[200px] h-screen inset-0 opacity-50'
         style={{ transform: `translateY(${props.scrollY * -0.2}px)` }}
