@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -78,8 +79,8 @@ const config: Config = {
     },
   },
   plugins: [
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     require('@tailwindcss/forms'),
+    require('tailwindcss-textshadow'),
   ],
 };
 

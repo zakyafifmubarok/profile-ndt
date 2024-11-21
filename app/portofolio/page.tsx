@@ -141,19 +141,6 @@ export default function PortofolioPage() {
 
       {/* Contact section */}
       <ContactComponent ref={contactRef} />
-
-      {/* CSS section */}
-      <style jsx>{`
-          .shine-text {
-            position: relative;
-            color: white;
-            background: linear-gradient(to left, rgba(250, 250, 250), rgba(230, 230, 230));
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            background-size: 150%;
-          }
-        `}</style>
     </main>
   );
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
-import Image from 'next/image';
 import { nunito } from '@/app/ui/fonts'
 import IconPrevious from '@/app/ui/icons/IconPrevious'
 import IconNext from '@/app/ui/icons/IconNext'
@@ -13,19 +12,18 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
   useImperativeHandle(ref, () => productRef.current as HTMLElement);
 
   const [isProductVisible, setProductVisible] = useState(false);
-  const [isProductImageVisible, setProductImageVisible] = useState(false);
 
   const [currentSlider, setCurrentSlider] = useState(0)
   const slides = [
     {
       title: 'SIPLah TOKOLADANG',
       subtitle: '(PT. Ladang Karya Husada)',
-      image: '/products/siplah.tokoladang.co.id.png',
-      description: `SIPLah Toko Ladang adalah platform pasar daring yang menyediakanbarang dan jasa untuk
-        satuan pendidikan. SIPLah Toko Ladang merupakan bagian dari Sistem Informasi Pengadaan
-        Sekolah (SIPLah) yang merupakan sistem elektronik untuk pengadaan barang dan jasa oleh
-        satuan pendidikan.`,
-      class: 'from-slate-700 via-slate-500 to-cyan-600',
+      image: '/products/siplah.jpg',
+      description: `SIPLah Toko Ladang adalah platform pasar daring yang menyediakan barang dan
+        jasa untuk satuan pendidikan. SIPLah Toko Ladang merupakan bagian dari Sistem Informasi
+        Pengadaan Sekolah (SIPLah) yang merupakan sistem elektronik untuk pengadaan barang dan
+        jasa oleh satuan pendidikan.`,
+      class: 'text-white',
     },
     {
       title: 'Toko Daring TOKOLADANG',
@@ -35,17 +33,17 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
         Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah (LKPP) untuk memfasilitasi pelaksanaan
         e-purchasing Pengadaan Barang/Jasa di K/L/PD melalui PPMSE yang berbentuk marketplace dan
         ritel daring.`,
-      class: 'from-orange-600 via-slate-500 to-slate-700',
+      class: 'text-slate-900',
     },
     {
       title: 'Aplikasi BAYUR',
       subtitle: '(CV. Nahcoda Digital Teknologi)',
       image: '/products/bayur.png',
-      description: `Aplikasi belanja sayur online adalah platform digital yang memungkinkan pengguna untuk
-        membeli berbagai macam sayur dan bahan makanan segar secara praktis dan efisien. Melalui
+      description: `Aplikasi belanja sayur online adalah platform digital yang memungkinkan pengguna
+        untuk membeli berbagai macam sayur dan bahan makanan segar secara praktis dan efisien. Melalui
         aplikasi ini, pengguna dapat menjelajahi katalog produk sayur, memilih item yang diinginkan,
         menambahkannya ke keranjang belanja, dan melakukan pembayaran secara online.`,
-      class: 'from-orange-600 via-slate-500 to-slate-700',
+      class: 'text-slate-900',
     },
     {
       title: 'Aplikasi Gain Profit',
@@ -53,7 +51,7 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
       image: '/products/gain-profit.png',
       description: `Aplikasi Gain Profit adalah platform digital yang dirancang untuk membantu pengguna
         mengelola dan memaksimalkan keuntungan finansial mereka.`,
-      class: 'from-orange-600 via-slate-500 to-slate-700',
+      class: 'text-slate-900',
     },
     {
       title: 'Sistem Administrasi Keuangan',
@@ -62,7 +60,7 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
       description: `Aplikasi Sistem Administrasi Keuangan adalah perangkat lunak yang dirancang untuk
           membantu pengelolaan keuangan secara efektif dan efisien dalam suatu organisasi,
           perusahaan, atau instansi.`,
-      class: 'from-orange-600 via-slate-500 to-slate-700',
+      class: 'text-slate-900',
     },
   ]
   const slideCount = slides.length;
@@ -81,10 +79,6 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
         if (entry.isIntersecting) {
           if (entry.intersectionRatio >= 0.2) {
             setProductVisible(true);
-          }
-          if (entry.intersectionRatio >= 0.4) {
-            setProductImageVisible(true);
-            observer.unobserve(entry.target);
           }
         }
       },
@@ -110,92 +104,45 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
         isProductVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
     >
-      <div className='absolute bg-gradient-to-r from-slate-500 via-white to-slate-500 inset-0 opacity-50'>
+      <div
+        className={`absolute bg-cover bg-center inset-0 opacity-60 ease-in-out duration-300`}
+        style={{
+          backgroundImage: `url("${slides[currentSlider]?.image || ''}")`,
+        }}
+      >
       </div>
-      <div className='overflow-hidden min-h-[80vh]'>
-        <div className='relative max-w-5xl mx-auto py-20 lg:py-28 px-6'>
-          <h1 className={`${nunito.className} text-left text-4xl font-medium uppercase`}>Our Product</h1>
-          <div className="mt-6 w-full overflow-hidden">
+      <div className='relative flex max-w-5xl mx-auto overflow-hidden min-h-[70vh]'>
+        <div className='max-w-3xl m-auto py-20 lg:py-28 px-6'>
+          <div className="mt-6 w-full overflow-hidden my-auto">
             <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentSlider * 100}%)` }}>
               {slides.map((slide, index) => (
                 <div
                   key={index}
-                  className={`h-80 bg-gradient-to-r ${slide.class} w-full shrink-0 p-8 flex justify-center items-center gap-6 rounded  md:h-96`}
+                  className={`${slide.class} w-full shrink-0 py-8 justify-center items-center gap-6 rounded`}
                 >
-                  <div className={`transform transition-opacity duration-1000 z-50 md:w-1/2
-                    ${isProductImageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-                    ${index % 2 === 0 ? 'order-2' : 'order-1'}`}
-                  >
-                    <div className='mb-4 font-bold text-white text-xl text-center uppercase md:hidden'>
-                      {slide.title}
-                    </div>
-                    <Image
-                      src={slide.image}
-                      width={1000}
-                      height={760}
-                      alt={`Screenshots of the ${slide.title}`}
-                    />
+                  <div className={`${nunito.className} font-bold text-4xl uppercase text-shadow-md`}>
+                    {slide.title}
                   </div>
-                  <div className={`hidden w-1/2 text-white md:block ${index % 2 === 0 ? 'order-1' : 'order-2'}`}>
-                    <div className='font-bold text-xl uppercase'>
-                      {slide.title}
-                    </div>
-                    <p>{slide.subtitle}</p>
-                    <p className='mt-2 text-justify'>
-                      {slide.description}
-                    </p>
-                  </div>
+                  <p className='text-2xl'>{slide.subtitle}</p>
+                  <p className='mt-10 text-lg font-medium text-justify'>
+                    {slide.description}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
           <button
-            className="absolute top-1/2 left-2 inline-flex size-8 items-center justify-center rounded-full bg-slate-100 bg-opacity-60 hover:bg-opacity-80"
+            className="absolute top-1/2 left-2 inline-flex size-8 items-center justify-center rounded-full bg-slate-100 bg-opacity-80 hover:bg-opacity-80"
             onClick={() => setCurrentSlider((prev) => (prev > 0 ? prev - 1 : slides.length - 1))}
           >
             <IconPrevious />  
           </button>
           <button
             onClick={() => setCurrentSlider((prev) => (prev < slides.length - 1 ? prev + 1 : 0))}
-            className="absolute top-1/2 right-2 inline-flex size-8 items-center justify-center rounded-full bg-slate-100 bg-opacity-60 hover:bg-opacity-80"
+            className="absolute top-1/2 right-2 inline-flex size-8 items-center justify-center rounded-full bg-slate-100 bg-opacity-80 hover:bg-opacity-80"
           >
             <IconNext />
           </button>
-          <div className="hidden mt-8 h-96">
-            <div className='flex overflow-hidden'>
-              {slides.map((slide, index) => (
-                <div
-                  key={index}
-                  className={`transition-transform duration-500 bg-gradient-to-r ${slide.class} w-full h-96
-                    shrink-0 p-8 flex justify-center items-center gap-6 rounded
-                    ${currentSlider == 0 ? 'translate-x-0' : '-translate-x-full'}
-                  `}
-                >
-                  <div
-                    className={`bg-slate-600 w-full transform transition-opacity duration-1000 md:w-1/2 ${
-                      isProductImageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                    } ${index % 2 === 0 ? 'order-2' : 'order-1'}`}
-                  >
-                    <Image
-                      src={slide.image}
-                      width={1000}
-                      height={760}
-                      alt={`Screenshots of the ${slide.title}`}
-                    />
-                  </div>
-                  <div className={`hidden w-1/2 text-white md:block ${index % 2 === 0 ? 'order-1' : 'order-2'}`}>
-                    <div className='font-bold text-xl uppercase'>
-                      {slide.title}
-                    </div>
-                    <p>{slide.subtitle}</p>
-                    <p className='mt-2 text-justify'>
-                      {slide.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>
