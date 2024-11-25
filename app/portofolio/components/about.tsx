@@ -40,7 +40,7 @@ const AboutComponent = forwardRef<HTMLElement, AboutComponentProps>((props, ref)
         isAboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
     >
-      <div className='bg-slate-900 relative px-2 text-white overflow-hidden'>
+      <div className='bg-slate-900 relative py-4 px-2 text-white overflow-hidden'>
         <div className='flex justify-center items-center max-w-5xl min-h-[60vh] mx-auto'>
           <div className='flex items-center gap-20'>
             <div className={`w-full ${poppins.className}`}>

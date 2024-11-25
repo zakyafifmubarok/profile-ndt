@@ -51,7 +51,7 @@ export default function PortofolioPage() {
       }`}>
         <div className='flex justify-between'>
           <div
-            className='flex items-center cursor-pointer'
+            className='flex items-center justify-center cursor-pointer'
             onClick={() => scrollToSection(mainRef)}
           >
             <Image
@@ -61,7 +61,7 @@ export default function PortofolioPage() {
               alt='Logo of NDT'
               className='mr-4'
             />
-            <div className='hidden md:block uppercase text-center'>
+            <div className='hidden md:block mt-2 uppercase text-center leading-3'>
               <div className="font-extrabold tracking-small">Nahcoda</div>
               <div className="text-sm">Digital Teknologi</div>
         </div>

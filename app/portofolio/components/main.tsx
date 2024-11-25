@@ -81,7 +81,7 @@ const MainComponent = forwardRef<HTMLElement, MainComponentProps>((props, ref) =
             alt='Logo of NDT'
             className='hidden lg:block mx-auto animate-pulse'
           />
-          <div className={`${lusitana.className} mt-14 text-5xl font-extrabold tracking-widest lg:text-5xl lg:leading-tight`}>
+          <div className={`${lusitana.className} mt-14 text-2xl font-extrabold tracking-widest lg:text-5xl lg:leading-tight`}>
             Solusi Digital Terbaik untuk Pengalaman Pengguna Luar Biasa.
           </div>
         </div>
