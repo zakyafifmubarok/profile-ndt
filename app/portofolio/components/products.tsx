@@ -116,11 +116,11 @@ const ProductsComponent = forwardRef<HTMLElement, ProductsComponentProps>((props
                   key={index}
                   className={`text-white w-full shrink-0 py-8 justify-center items-center gap-6 rounded`}
                 >
-                  <div className={`${nunito.className} font-bold text-4xl uppercase text-shadow-md`}>
+                  <div className={`${nunito.className} text-xl font-bold uppercase lg:text-4xl`}>
                     {slide.title}
                   </div>
-                  <p className='text-2xl'>{slide.subtitle}</p>
-                  <p className='mt-10 text-lg font-medium text-justify'>
+                  <p className='lg:text-2xl'>{slide.subtitle}</p>
+                  <p className='mt-10 w-80 font-medium text-justify md:w-full lg:text-lg'>
                     {slide.description}
                   </p>
                 </div>

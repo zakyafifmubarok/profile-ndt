@@ -46,22 +46,25 @@ export default function PortofolioPage() {
   return (
     <main className='relative'>
       {/* Navbar section */}
-      <div className={`fixed w-full opacity-80 top-0 z-50 py-2 px-4 text-white ${
+      <div className={`fixed w-full opacity-80 top-0 z-50 py-4 px-4 text-white lg:px-6 ${
         isScrolled ? 'bg-slate-900' : 'bg-transparent'
       }`}>
         <div className='flex justify-between'>
           <div
-            className='flex items-center cursor-pointer hover:underline'
+            className='flex items-center cursor-pointer'
             onClick={() => scrollToSection(mainRef)}
           >
             <Image
               src='/logo-white.png'
-              width={60}
-              height={60}
-              alt='Picture of CEO'
-              className='-mt-2 -ml-4 md:mt-0 md:ml-0'
+              width={30}
+              height={30}
+              alt='Logo of NDT'
+              className='mr-4'
             />
-            <span className='hidden md:block'>Home</span>
+            <div className='hidden md:block uppercase text-center'>
+              <div className="font-extrabold tracking-small">Nahcoda</div>
+              <div className="text-sm">Digital Teknologi</div>
+        </div>
           </div>
           <div className='block md:hidden'>
             <button onClick={() => setMobileNavigation(!isMobileNavigation)}>
@@ -92,7 +95,7 @@ export default function PortofolioPage() {
                 <li>
                   <button
                     onClick={() => scrollToSection(productRef)}
-                    className="block py-2 px-3 rounded hover:underline">Products</button>
+                    className="block py-2 px-3 rounded hover:underline">Partner</button>
                 </li>
                 <li>
                   <button
@@ -116,7 +119,7 @@ export default function PortofolioPage() {
             <button
               className='hover:underline'
               onClick={() => scrollToSection(productRef)}
-              >Products</button
+              >Partner</button
             >
             <button
               className='hover:underline'

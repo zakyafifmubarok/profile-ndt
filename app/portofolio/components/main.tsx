@@ -8,6 +8,7 @@ import {
   useImperativeHandle,
 } from 'react';
 import { lusitana } from '@/app/ui/fonts';
+import Image from 'next/image';
 
 type MainComponentProps = {
   scrollY: number;
@@ -64,14 +65,25 @@ const MainComponent = forwardRef<HTMLElement, MainComponentProps>((props, ref) =
         style={{ transform: `translateY(${offset}px)` }}
       >
         <div
-          className={`${lusitana.className} text-white h-full flex flex-col justify-center text-center uppercase text-shadow`}
+          className={`max-w-6xl mx-auto px-2 text-white h-full flex flex-col justify-center text-center uppercase`}
         >
-          <h1 className="text-5xl lg:text-9xl font-extrabold tracking-widest">
-            Nahcoda
-          </h1>
-          <p className="tracking-small lg:text-2xl lg:tracking-letter18">
-            Digital Teknologi
-          </p>
+          <Image
+            src='/logo-white.png'
+            width={100}
+            height={100}
+            alt='Logo of NDT'
+            className='lg:hidden mx-auto animate-pulse'
+          />
+          <Image
+            src='/logo-white.png'
+            width={150}
+            height={150}
+            alt='Logo of NDT'
+            className='hidden lg:block mx-auto animate-pulse'
+          />
+          <div className={`${lusitana.className} mt-14 text-5xl font-extrabold tracking-widest lg:text-5xl lg:leading-tight`}>
+            Solusi Digital Terbaik untuk Pengalaman Pengguna Luar Biasa.
+          </div>
         </div>
       </div>
     </section>

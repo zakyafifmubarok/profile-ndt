@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react';
-import Image from 'next/image';
 import { poppins } from '@/app/ui/fonts';
 
 type AboutComponentProps = object
@@ -47,25 +46,17 @@ const AboutComponent = forwardRef<HTMLElement, AboutComponentProps>((props, ref)
             <div className={`w-full ${poppins.className}`}>
               <h1 className='text-3xl font-bold uppercase md:text-4xl'>About the Company</h1>
               <p className='mt-4 text-justify md:text-xl'>
-                CV Nahcoda Digital Teknologi adalah perusahaan teknologi informasi yang
-                berdiri sejak Tahun 2019 yang awalnya bernama PT Juru Ketik Nusantara,
-                kemudian pada Tahun 2022 bertransformasi menjadi CV Nahcoda Digital
-                Teknologi. Kami memiliki pengalaman luas dalam pengembangan aplikasi web,
-                aplikasi mobile, keamanan siber, dan big data. Dengan tim yang terdiri
-                dari para ahli teknologi yang berpengalaman, kami berkomitmen untuk
-                memberikan layanan terbaik kepada anda.
+                CV Nahcoda Digital Teknologi adalah perusahaan teknologi informasi yang didirikan
+                pada tahun 2019 dengan nama awal PT Juru Ketik Nusantara. Pada tahun 2022, perusahaan
+                bertransformasi menjadi CV Nahcoda Digital Teknologi, mencerminkan visi baru untuk
+                mendukung kebutuhan teknologi yang terus berkembang.
               </p>
-            </div>
-            <div
-              className='w-1/2 justify-end hidden animate-pulse lg:block'
-              style={{ transitionDuration: '10000ms' }}
-            >
-              <Image
-                src="/logo-white.png"
-                width={300}
-                height={380}
-                alt='Picture of CEO'
-              />
+              <p className='mt-4 text-justify md:text-xl'>
+                Kami memiliki keahlian luas dalam pengembangan aplikasi web, aplikasi mobile,
+                keamanan siber, dan big data. Dengan tim yang terdiri dari para profesional
+                berpengalaman di bidang teknologi, kami berkomitmen untuk memberikan solusi
+                terbaik yang mengutamakan kualitas, inovasi, dan kepuasan klien.
+              </p>
             </div>
           </div>
         </div>
