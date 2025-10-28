@@ -5,17 +5,43 @@
 @layer utilities {
 }
 
-input[type='number'] {
+input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-input[type='number']::-webkit-inner-spin-button {
+input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type='number']::-webkit-outer-spin-button {
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+:root {
+  --bg: #0b0c0d; /* page background */
+  --surface: #0f1112; /* card surface */
+  --muted: #9aa3ad;
+  --accent: #4f9ef8;
+  --glass: rgba(255, 255, 255, 0.02);
+}
+.dark body {
+  background: var(--bg);
+  color: #e6eef8;
+}
+.glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  backdrop-filter: blur(6px);
+}
+/* Make sure images don't overflow when imported */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
