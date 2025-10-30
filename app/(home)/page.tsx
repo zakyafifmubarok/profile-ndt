@@ -23,7 +23,7 @@ export default function Page() {
             >
               Get Started
             </a>
-            <a href="#portfolio" className="text-sm text-slate-400">
+            <a href="#portfolio" className="text-sm text-slate-400 hover:text-amber-500 transition">
               See our work →
             </a>
           </div>

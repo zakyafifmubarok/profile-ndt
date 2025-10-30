@@ -37,24 +37,24 @@ export default function HomeLayout({
               </svg>
             </div>
             <div>
-              <div className="text-sm font-semibold tracking-wide uppercase">
-                Nahcoda Digital
+              <div className="text-lg font-semibold tracking-wide uppercase">
+                Nahcoda
               </div>
-              <div className="text-xs text-slate-400 -mt-0.5">Teknologi</div>
+              <div className="text-xs text-slate-400 -mt-0.5">Digital Teknologi</div>
             </div>
           </div>
 
           <nav className="hidden md:flex items-center gap-8 text-sm text-slate-300">
-            <a className="hover:text-white transition" href="#about">
+            <a className="hover:text-amber-500 transition" href="#about">
               About
             </a>
-            <a className="hover:text-white transition" href="#services">
+            <a className="hover:text-amber-500 transition" href="#services">
               Services
             </a>
-            <a className="hover:text-white transition" href="#portfolio">
+            <a className="hover:text-amber-500 transition" href="#portfolio">
               Portfolio
             </a>
-            <a className="hover:text-white transition" href="#contact">
+            <a className="hover:text-amber-500 transition" href="#contact">
               Contact
             </a>
           </nav>
